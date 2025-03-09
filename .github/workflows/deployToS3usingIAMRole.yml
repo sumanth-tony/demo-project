@@ -21,6 +21,7 @@ jobs:
       with:
         role-to-assume: arn:aws:iam::133583404575:role/GitHub-Actions-To-S3
         aws-region: 'eu-central-1'
+        audience: sts.amazonaws.com
     
     - name: Sync website to S3
       uses: jakejarvis/s3-sync-action@master
@@ -28,5 +29,5 @@ jobs:
         args: --acl public-read --follow-symlinks --delete ./website
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
